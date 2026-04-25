@@ -156,52 +156,58 @@
             }
         }
         .zone-item {
-            /* Big card style */
-            background: var(--card);
-            border-radius: 23px;
-            box-shadow: 0 8px 70px #fff02508, 0 3px 30px #0009;
-            padding: 1.8em 1.1em 2.6em 1.1em;
+            background: linear-gradient(180deg, #0a0f18, #11161f);
+            border-radius: 26px;
+            box-shadow: 0 16px 90px rgba(32, 102, 205, 0.10), 0 4px 34px rgba(0,0,0,0.30);
+            padding: 1.8em 1.2em 2.4em 1.2em;
             width: 360px;
             min-height: 335px;
             display: flex;
             flex-direction: column;
             align-items: center;
             cursor: pointer;
-            border: 2.7px solid var(--fade);
-            transition: box-shadow .18s, border .15s, background .13s;
+            border: 2px solid rgba(98,182,255,0.16);
+            transition: box-shadow .18s, border .15s, background .16s, transform .16s;
             margin-bottom: 1em;
         }
         .zone-item:hover, .zone-item:focus-within {
-            border: 2.7px solid var(--accent);
-            background: #191919;
-            box-shadow: 0 14px 120px #fff2, 0 4px 50px #fff3;
+            border-color: rgba(98,182,255,0.4);
+            background: linear-gradient(180deg, #111a27, #141d30);
+            box-shadow: 0 22px 120px rgba(98,182,255,0.20), 0 10px 42px rgba(0,0,0,0.28);
+            transform: translateY(-3px);
+        }
+        .zone-item.selected {
+            border-color: #62b6ff;
+            background: linear-gradient(180deg, #0d1625, #101a2b);
+            box-shadow: 0 24px 140px rgba(98,182,255,0.24), 0 12px 50px rgba(0,0,0,0.30);
         }
         .zone-item img {
             width: 210px;
             height: 182px;
             object-fit: cover;
-            border-radius: 15px;
+            border-radius: 18px;
             margin-bottom: 1.1em;
-            box-shadow: 0 8px 36px #fff2,0 1.5px 8px #000;
-            background: var(--fade);
+            box-shadow: 0 10px 42px rgba(98,182,255,0.18), 0 2px 10px rgba(0,0,0,0.28);
+            background: radial-gradient(circle at top, rgba(98,182,255,0.12), transparent 45%);
         }
         .zone-item button {
-            margin-top: 0.7em;
+            margin-top: 0.9em;
             width: 100%;
-            padding: .98em;
+            padding: 1em;
             border: none;
-            background: var(--accent);
-            color: #000;
-            font-size: 1.25em;
-            border-radius: 10px;
-            font-weight: 700;
+            background: linear-gradient(135deg, #62b6ff, #1a4fff);
+            color: #fff;
+            font-size: 1.15em;
+            border-radius: 14px;
+            font-weight: 800;
             cursor: pointer;
-            box-shadow: 0 6px 34px #fff1;
-            transition: background .16s, color .16s;
+            box-shadow: 0 10px 34px rgba(98,182,255,0.22);
+            transition: background .16s, color .16s, transform .16s;
         }
         .zone-item button:hover {
-            background: #191919;
-            color: #fff;
+            background: #0c1f3b;
+            color: #f8fbff;
+            transform: translateY(-1px);
         }
         #allSummary {
             margin:1.7em 0 1.1em;
@@ -231,18 +237,20 @@
         }
         /* FIX BUTTON SIZE FOR GAME VIEWER TOOLBAR */
         .zone-viewer-bar {
-            background: #15151a;
+            background: linear-gradient(135deg, #08141f, #121f2c);
             width: 92vw;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            color: #fff;
+            color: #eef5ff;
             padding: 1em 2.3em;
             border-radius: 18px 18px 0 0;
             font-size: 1.22em;
+            border-bottom: 1px solid rgba(98,182,255,0.22);
+            box-shadow: inset 0 -1px 0 rgba(255,255,255,0.08);
         }
         .zone-viewer-bar a {
-            color: var(--accent);
+            color: #8dc7ff;
         }
         .zone-viewer-bar span:last-child {
             display: flex;
@@ -250,20 +258,21 @@
             gap: 16px;
         }
         .zone-viewer-bar button, #zoneViewer-close {
-            background: #222;
-            color: #fff;
+            background: #0c1d2f;
+            color: #eef5ff;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 1.25em;
+            font-size: 1.18em;
             padding: .9em 2em; /* FIXED SIZE - ALL GAME VIEWER BUTTONS SAME */
-            font-weight: 600;
+            font-weight: 700;
             box-sizing: border-box;
-            transition: background .16s, color .16s;
+            transition: background .16s, color .16s, transform .16s;
         }
         .zone-viewer-bar button:hover, #zoneViewer-close:hover {
-            background: var(--accent);
-            color:var(--bg);
+            background: #62b6ff;
+            color:#020617;
+            transform: translateY(-1px);
         }
         /* Extra: make the close button match in size too */
         #zoneViewer-close {

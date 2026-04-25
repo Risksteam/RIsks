@@ -100,17 +100,16 @@
     }
 
     .search-bar {
-      margin: 34px 0 28px 0;
-      width: 480px;
+      margin: 34px 0 18px 0;
+      width: 520px;
       max-width: 98vw;
       display: flex;
-      background: rgba(255,255,255,0.97);
-      border-radius: 16px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.96);
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.18);
       z-index: 3;
-      border: 3px solid #17d917;
-      box-shadow: 0 0 7px #2fff5986, 0 2px 12px rgba(0,0,0,0.08);
-      transition: border 0.17s, box-shadow 0.19s;
+      border: 2px solid rgba(255,255,255,0.35);
+      transition: border 0.17s, box-shadow 0.19s, transform 0.19s;
     }
     .search-bar input[type="text"] {
       width: 90%;
@@ -141,17 +140,53 @@
     }
     .search-bar button:hover {
       background: #ececec;
+      transform: translateY(-1px);
     }
 
-    .material-symbols-outlined {
-      font-size: 2.1rem !important;
-      color: #000 !important;
-      line-height: 1 !important;
-      font-variation-settings:
-        'FILL' 1,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 32
+    #pageStatus {
+      margin: 10px auto 12px;
+      width: min(920px, 98vw);
+      padding: 12px 18px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px;
+      color: #f1f1f1;
+      text-align: center;
+      font-size: 0.96rem;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.14);
+      z-index: 3;
+    }
+
+    .shortcut {
+      width: 96px;
+      padding: 16px 6px 8px 6px;
+      text-align: center;
+      background: rgba(255,255,255,0.88);
+      border-radius: 18px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+      cursor: pointer;
+      transition: background 0.14s, box-shadow 0.16s, transform 0.16s;
+      font-size: 0.96em;
+    }
+
+    .shortcut:hover {
+      background: #f4f4f4;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+      transform: translateY(-2px);
+    }
+
+    .shortcut img, .shortcut svg {
+      width: 34px; height: 34px; margin-bottom: 6px; vertical-align: middle; display: inline-block;
+    }
+
+    .nav-link {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 6px 22px rgba(0,0,0,0.16);
+      padding: 7px 16px;
+      border-radius: 12px;
+      color: #fff;
+      text-shadow: 0 0 6px #fff9;
     }
 
     .shortcuts {
@@ -322,12 +357,13 @@
     <a class="nav-link" href="games.html" target="_blank">Games</a>
     <a class="nav-link" href="changelog.html" target="_blank">Changelog</a>
   </nav>
+  <div id="pageStatus">Engine update: interface styling now flows from the homepage through the games and content pages.</div>
 
   <div class="dern-header">Dern V2 (soon)</div>
   <div class="main-content">
     <!-- Search bar -->
     <form class="search-bar" action="https://www.google.com/search" method="get" target="_blank">
-      <input type="text" name="index" autocomplete="off" placeholder="Search the web...">
+      <input type="text" name="index" autocomplete="off" placeholder="dis dont work lil bro">
       <button type="submit" title="Search">
         <span class="material-symbols-outlined">search</span>
       </button>
