@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"/>
     <style>
         :root {
-            --bg: #000;
+            --bg: #020409;
             --panel: #111;
             --card: #111;
             --accent: #fff;
@@ -22,26 +22,40 @@
             --border: #333;
         }
         html, body {
-            background: var(--bg);
+            background: linear-gradient(180deg, #020409 0%, #08101d 100%);
             color: var(--text);
             font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
             min-height: 100vh;
+            position: relative;
+        }
+        #spark-canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.22;
+        }
+        body > * {
+            position: relative;
+            z-index: 1;
         }
         header {
             background: var(--panel);
-            padding: 1.2em 0 1.4em 0;
+            padding: 0.9em 0 1em 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-bottom: 2px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
         .logo {
-            font-size: 2.6em;
+            font-size: 2.2em;
             color: var(--accent);
             font-weight: bold;
-            letter-spacing: 3px;
-            margin-right: 1.8em;
+            letter-spacing: 2px;
+            margin-right: 1.3em;
         }
         .header-btns {
             margin-left: auto;
@@ -49,20 +63,21 @@
             gap: 1.2em;
         }
         .header-btns button, .header-btns a {
-            background: var(--card);
-            border: 2px solid var(--border);
+            background: transparent;
+            border: 1.5px solid rgba(255,255,255,0.18);
             color: var(--accent);
             font-weight: 600;
-            padding: 11px 20px;
+            padding: 8px 14px;
             border-radius: 8px;
-            font-size: 1em;
-            transition: background .2s, color .2s;
+            font-size: 0.96rem;
+            transition: border-color .2s, color .2s, transform .2s;
             cursor: pointer;
             text-decoration: none;
         }
         .header-btns button:hover, .header-btns a:hover {
-            background: var(--accent);
-            color: var(--bg);
+            border-color: rgba(255,255,255,0.36);
+            color: #fff;
+            transform: translateY(-1px);
         }
         main {
             max-width: 1200px;
@@ -71,17 +86,17 @@
         #promoBox {
             width: 100%;
             max-width: 100%;
-            max-height: 312px;
+            max-height: 260px;
             aspect-ratio: 2.8/1;
             background: #000;
-            border-radius: 15px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            margin-bottom: 1.7em;
-            border: 3.8px solid var(--border);
-            box-shadow: 0 7px 50px #000c;
+            margin-bottom: 1.3em;
+            border: 2px solid rgba(255,255,255,0.08);
+            box-shadow: 0 8px 26px rgba(0,0,0,0.35);
             cursor: pointer;
             transition: box-shadow .14s, border .16s;
         }
@@ -97,17 +112,17 @@
         }
         .toolbar {
             display: flex;
-            gap: 13px;
-            margin-bottom: 2.3em;
+            gap: 10px;
+            margin-bottom: 1.8em;
             flex-wrap: wrap;
         }
         #searchBar {
             flex: 3;
-            font-size: 1.3em;
+            font-size: 1.1em;
             background: var(--card);
-            border: 2px solid var(--border);
+            border: 1.5px solid var(--border);
             border-radius: 7px;
-            padding: 1em 1.15em;
+            padding: 0.85em 1em;
             color: var(--text);
             outline: none;
         }
@@ -124,18 +139,19 @@
             color: var(--accent);
         }
         #randomZoneBtn {
-            font-size: 1.18em;
-            padding: .55em 1.5em;
-            border: 2px solid var(--border);
+            font-size: 1rem;
+            padding: .65em 1.2em;
+            border: 1px solid rgba(255,255,255,0.18);
             border-radius: 7px;
-            background: var(--fade);
+            background: transparent;
             color: var(--accent);
             font-weight: 600;
-            transition: background .16s, color .16s;
+            transition: border-color .16s, color .16s, transform .16s;
         }
         #randomZoneBtn:hover {
-            background: var(--accent);
-            color: var(--bg);
+            border-color: #62b6ff;
+            color: #fff;
+            transform: translateY(-1px);
         }
         .zone-list {
             display: flex;
@@ -157,24 +173,24 @@
         }
         .zone-item {
             background: linear-gradient(180deg, #0a0f18, #11161f);
-            border-radius: 26px;
-            box-shadow: 0 16px 90px rgba(32, 102, 205, 0.10), 0 4px 34px rgba(0,0,0,0.30);
-            padding: 1.8em 1.2em 2.4em 1.2em;
-            width: 360px;
-            min-height: 335px;
+            border-radius: 22px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.24);
+            padding: 1.2em 1em 1.6em 1em;
+            width: 310px;
+            min-height: 280px;
             display: flex;
             flex-direction: column;
             align-items: center;
             cursor: pointer;
-            border: 2px solid rgba(98,182,255,0.16);
+            border: 1px solid rgba(98,182,255,0.16);
             transition: box-shadow .18s, border .15s, background .16s, transform .16s;
-            margin-bottom: 1em;
+            margin-bottom: 0.9em;
         }
         .zone-item:hover, .zone-item:focus-within {
-            border-color: rgba(98,182,255,0.4);
+            border-color: rgba(98,182,255,0.32);
             background: linear-gradient(180deg, #111a27, #141d30);
-            box-shadow: 0 22px 120px rgba(98,182,255,0.20), 0 10px 42px rgba(0,0,0,0.28);
-            transform: translateY(-3px);
+            box-shadow: 0 14px 46px rgba(0,0,0,0.26);
+            transform: translateY(-1px);
         }
         .zone-item.selected {
             border-color: #62b6ff;
@@ -191,22 +207,22 @@
             background: radial-gradient(circle at top, rgba(98,182,255,0.12), transparent 45%);
         }
         .zone-item button {
-            margin-top: 0.9em;
-            width: 100%;
-            padding: 1em;
-            border: none;
-            background: linear-gradient(135deg, #62b6ff, #1a4fff);
-            color: #fff;
-            font-size: 1.15em;
-            border-radius: 14px;
-            font-weight: 800;
+            margin-top: 0.8em;
+            width: auto;
+            padding: 0.65em 1.05em;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: transparent;
+            color: #eef5ff;
+            font-size: 0.98rem;
+            border-radius: 12px;
+            font-weight: 700;
             cursor: pointer;
-            box-shadow: 0 10px 34px rgba(98,182,255,0.22);
-            transition: background .16s, color .16s, transform .16s;
+            box-shadow: none;
+            transition: border-color .16s, color .16s, transform .16s;
         }
         .zone-item button:hover {
-            background: #0c1f3b;
-            color: #f8fbff;
+            border-color: #62b6ff;
+            color: #fff;
             transform: translateY(-1px);
         }
         #allSummary {
@@ -258,35 +274,35 @@
             gap: 16px;
         }
         .zone-viewer-bar button, #zoneViewer-close {
-            background: #0c1d2f;
+            background: transparent;
             color: #eef5ff;
-            border: none;
+            border: 1px solid rgba(238,243,255,0.24);
             border-radius: 12px;
             cursor: pointer;
-            font-size: 1.18em;
-            padding: .9em 2em; /* FIXED SIZE - ALL GAME VIEWER BUTTONS SAME */
+            font-size: 1rem;
+            padding: .7em 1.2em;
             font-weight: 700;
             box-sizing: border-box;
-            transition: background .16s, color .16s, transform .16s;
+            transition: border-color .16s, color .16s, transform .16s;
         }
         .zone-viewer-bar button:hover, #zoneViewer-close:hover {
-            background: #62b6ff;
-            color:#020617;
+            border-color: #62b6ff;
+            color: #fff;
             transform: translateY(-1px);
         }
         #mute {
-            background: #191919;
-            border: 2px solid var(--border);
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.18);
             color: var(--accent);
             border-radius: 10px;
-            font-size: 1.1em;
-            padding: .9em 1.25em;
+            font-size: 1rem;
+            padding: .7em 1em;
             cursor: pointer;
-            transition: background .16s, color .16s, transform .16s;
+            transition: border-color .16s, color .16s, transform .16s;
         }
         #mute:hover {
-            background: var(--accent);
-            color: var(--bg);
+            border-color: #62b6ff;
+            color: #fff;
             transform: translateY(-1px);
         }
         #statusBar {
@@ -309,12 +325,12 @@
         }
         /* Extra: make the close button match in size too */
         #zoneViewer-close {
-            background: #222;
-            color: #fff;
+            background: transparent;
+            color: #eef5ff;
             border-radius: 10px;
-            border: none;
-            font-size: 1.25em;
-            padding: .9em 2em;
+            border: 1px solid rgba(255,255,255,0.22);
+            font-size: 1rem;
+            padding: .7em 1.2em;
             font-weight: 600;
             margin-left: 0 !important;
         }
@@ -362,67 +378,24 @@
         }
         #popupClose {
             margin-left: auto;
-            background: #191919;
-            border:none;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.18);
             color: var(--accent);
             border-radius: 8px;
             font-size: 1.15em;
             padding: .45em 1em;
             cursor:pointer;
-            transition: background .16s;
+            transition: border-color .16s, color .16s, transform .16s;
         }
         #popupClose:hover {
-            background: var(--accent);
-            color:#000;
-        }
-        .warning-modal {
-            position: fixed;
-            inset: 0;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0,0,0,0.82);
-            z-index: 60;
-            padding: 20px;
-        }
-        .warning-panel {
-            width: min(520px, 100%);
-            background: #101218;
-            border: 1px solid rgba(255,255,255,0.14);
-            border-radius: 18px;
-            box-shadow: 0 22px 50px rgba(0,0,0,0.35);
-            color: #f3f3f3;
-            padding: 26px 24px;
-            position: relative;
-            text-align: center;
-            line-height: 1.6;
-        }
-        .warning-panel h2 {
-            margin: 0 0 12px;
-            font-size: 1.5em;
-            color: #fff;
-        }
-        .warning-close {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 36px;
-            height: 36px;
-            border: none;
-            border-radius: 12px;
-            background: rgba(255,255,255,0.08);
-            color: #fff;
-            cursor: pointer;
-            font-size: 1.35em;
-            transition: background .16s, transform .16s;
-        }
-        .warning-close:hover {
-            background: rgba(255,255,255,0.22);
+            border-color: #62b6ff;
+            color:#fff;
             transform: translateY(-1px);
         }
     </style>
 </head>
 <body>
+    <canvas id="spark-canvas"></canvas>
     <header>
         <div class="logo">
             RIsks v2
@@ -481,14 +454,6 @@
             <button id="popupClose" onclick="closePopup()">✕</button>
         </div>
         <div id="popupBody"></div>
-      </div>
-    </div>
-
-    <div class="warning-modal" id="warningModal">
-      <div class="warning-panel">
-        <button class="warning-close" onclick="closeWarning()">✕</button>
-        <h2>Important Notice</h2>
-        <p>Don't DMCA us. Don't copy this site. Our host got DMCA, so most good games will be broken.</p>
       </div>
     </div>
 
@@ -870,7 +835,7 @@
         document.getElementById('settings').onclick = function() {
             document.getElementById('popupTitle').textContent = "Settings";
             document.getElementById('popupBody').innerHTML = `
-                <button style="width:100%;padding:.9em;border-radius:7px;font-size:1.2em; background:#fff;color:#000;margin-bottom:18px;" onclick="randomZone()">Random Game</button>`;
+                <button style="width:100%;padding:.75em 1em;border-radius:8px;font-size:1rem;background:transparent;color:#eef5ff;border:1px solid rgba(238,243,255,0.24);margin-bottom:18px;" onclick="randomZone()">Random Game</button>`;
             document.getElementById('popupOverlay').style.display = "flex";
         };
 
@@ -908,17 +873,65 @@
             const randomBtn = document.getElementById("randomZoneBtn");
             randomBtn.addEventListener("click", randomZone);
             listZones();
-            showWarning();
         });
 
-        function closeWarning() {
-            document.getElementById('warningModal').style.display = 'none';
-        }
+        (function() {
+          const canvas = document.getElementById('spark-canvas');
+          if (!canvas) return;
+          const ctx = canvas.getContext('2d');
+          let w = window.innerWidth;
+          let h = window.innerHeight;
+          let sparks = [];
 
-        function showWarning() {
-            const modal = document.getElementById('warningModal');
-            if (modal) modal.style.display = 'flex';
-        }
+          function resize() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+          }
+          window.addEventListener('resize', resize);
+          resize();
+
+          function randomSpark() {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = 0.2 + Math.random() * 0.28;
+            return {
+              x: Math.random() * w,
+              y: Math.random() * h,
+              vx: Math.cos(angle) * speed,
+              vy: Math.sin(angle) * speed,
+              alpha: 0.16 + Math.random() * 0.2,
+              size: 0.8 + Math.random() * 1.2,
+              life: 0,
+            };
+          }
+
+          function spawnSparks(count) {
+            sparks = Array.from({ length: count }, randomSpark);
+          }
+          spawnSparks(40);
+
+          function animate() {
+            ctx.clearRect(0, 0, w, h);
+            sparks.forEach((spark) => {
+              const opacity = Math.max(0, spark.alpha - spark.life * 0.014);
+              ctx.globalAlpha = opacity;
+              ctx.fillStyle = '#eef3ff';
+              ctx.beginPath();
+              ctx.arc(spark.x, spark.y, spark.size, 0, Math.PI * 2);
+              ctx.fill();
+
+              spark.x += spark.vx + (Math.random() - 0.5) * 0.08;
+              spark.y += spark.vy + (Math.random() - 0.5) * 0.08;
+              spark.life += 1;
+
+              if (spark.x < -10 || spark.x > w + 10 || spark.y < -10 || spark.y > h + 10 || opacity <= 0.01) {
+                Object.assign(spark, randomSpark());
+                spark.life = 0;
+              }
+            });
+            requestAnimationFrame(animate);
+          }
+          animate();
+        })();
     </script>
 </body>
 </html>

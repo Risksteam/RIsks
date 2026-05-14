@@ -11,9 +11,23 @@
       padding: 0;
       min-height: 100vh;
       min-width: 100vw;
-      background: url('homepage.png') no-repeat center center fixed;
-      background-size: cover;
+      background: linear-gradient(180deg, #07090f 0%, #111720 100%);
       font-family: 'Segoe UI', Arial, sans-serif;
+      color: #f5f5f5;
+      position: relative;
+    }
+    #spark-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.24;
+    }
+    body > * {
+      position: relative;
+      z-index: 1;
     }
 
     .main-content {
@@ -126,6 +140,7 @@
   </style>
 </head>
 <body>
+  <canvas id="spark-canvas"></canvas>
 
   <div class="main-content">
     <!-- Search bar -->
@@ -174,6 +189,64 @@
     }
     updateDateTime();
     setInterval(updateDateTime, 1000);
+
+    (function() {
+      const canvas = document.getElementById('spark-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let w = window.innerWidth;
+      let h = window.innerHeight;
+      let sparks = [];
+
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      function randomSpark() {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 0.2 + Math.random() * 0.28;
+        return {
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          alpha: 0.16 + Math.random() * 0.2,
+          size: 0.8 + Math.random() * 1.1,
+          life: 0,
+        };
+      }
+
+      function spawnSparks(count) {
+        sparks = Array.from({ length: count }, randomSpark);
+      }
+      spawnSparks(34);
+
+      function animate() {
+        ctx.clearRect(0, 0, w, h);
+        sparks.forEach((spark) => {
+          const opacity = Math.max(0, spark.alpha - spark.life * 0.014);
+          ctx.globalAlpha = opacity;
+          ctx.fillStyle = '#fff';
+          ctx.beginPath();
+          ctx.arc(spark.x, spark.y, spark.size, 0, Math.PI * 2);
+          ctx.fill();
+
+          spark.x += spark.vx + (Math.random() - 0.5) * 0.08;
+          spark.y += spark.vy + (Math.random() - 0.5) * 0.08;
+          spark.life += 1;
+
+          if (spark.x < -10 || spark.x > w + 10 || spark.y < -10 || spark.y > h + 10 || opacity <= 0.01) {
+            Object.assign(spark, randomSpark());
+            spark.life = 0;
+          }
+        });
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
   </script>
 </body>
 </html>

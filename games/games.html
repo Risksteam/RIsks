@@ -124,18 +124,19 @@
             color: var(--accent);
         }
         #randomZoneBtn {
-            font-size: 1.18em;
-            padding: .55em 1.5em;
-            border: 2px solid var(--border);
+            font-size: 1rem;
+            padding: .65em 1.2em;
+            border: 1px solid rgba(255,255,255,0.18);
             border-radius: 7px;
-            background: var(--fade);
+            background: transparent;
             color: var(--accent);
             font-weight: 600;
-            transition: background .16s, color .16s;
+            transition: border-color .16s, color .16s, transform .16s;
         }
         #randomZoneBtn:hover {
-            background: var(--accent);
-            color: var(--bg);
+            border-color: #62b6ff;
+            color: #fff;
+            transform: translateY(-1px);
         }
         .zone-list {
             display: flex;
@@ -192,21 +193,21 @@
         }
         .zone-item button {
             margin-top: 0.9em;
-            width: 100%;
-            padding: 1em;
-            border: none;
-            background: linear-gradient(135deg, #62b6ff, #1a4fff);
-            color: #fff;
-            font-size: 1.15em;
-            border-radius: 14px;
-            font-weight: 800;
+            width: auto;
+            padding: 0.7em 1.1em;
+            border: 1px solid rgba(98,182,255,0.45);
+            background: transparent;
+            color: #62b6ff;
+            font-size: 1em;
+            border-radius: 12px;
+            font-weight: 700;
             cursor: pointer;
-            box-shadow: 0 10px 34px rgba(98,182,255,0.22);
-            transition: background .16s, color .16s, transform .16s;
+            box-shadow: none;
+            transition: border-color .16s, color .16s, transform .16s;
         }
         .zone-item button:hover {
-            background: #0c1f3b;
-            color: #f8fbff;
+            border-color: #62b6ff;
+            color: #eef5ff;
             transform: translateY(-1px);
         }
         #allSummary {
@@ -258,30 +259,30 @@
             gap: 16px;
         }
         .zone-viewer-bar button, #zoneViewer-close {
-            background: #0c1d2f;
+            background: transparent;
             color: #eef5ff;
-            border: none;
+            border: 1px solid rgba(238,243,255,0.24);
             border-radius: 12px;
             cursor: pointer;
-            font-size: 1.18em;
-            padding: .9em 2em; /* FIXED SIZE - ALL GAME VIEWER BUTTONS SAME */
+            font-size: 1rem;
+            padding: .7em 1.2em;
             font-weight: 700;
             box-sizing: border-box;
-            transition: background .16s, color .16s, transform .16s;
+            transition: border-color .16s, color .16s, transform .16s;
         }
         .zone-viewer-bar button:hover, #zoneViewer-close:hover {
-            background: #62b6ff;
-            color:#020617;
+            border-color: #62b6ff;
+            color: #fff;
             transform: translateY(-1px);
         }
         /* Extra: make the close button match in size too */
         #zoneViewer-close {
-            background: #222;
+            background: transparent;
             color: #fff;
             border-radius: 10px;
-            border: none;
-            font-size: 1.25em;
-            padding: .9em 2em;
+            border: 1px solid rgba(238,243,255,0.24);
+            font-size: 1rem;
+            padding: .7em 1.2em;
             font-weight: 600;
             margin-left: 0 !important;
         }
@@ -329,18 +330,19 @@
         }
         #popupClose {
             margin-left: auto;
-            background: #191919;
-            border:none;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.18);
             color: var(--accent);
             border-radius: 8px;
             font-size: 1.15em;
             padding: .45em 1em;
             cursor:pointer;
-            transition: background .16s;
+            transition: border-color .16s, color .16s, transform .16s;
         }
         #popupClose:hover {
-            background: var(--accent);
-            color:#000;
+            border-color: #62b6ff;
+            color:#fff;
+            transform: translateY(-1px);
         }
     </style>
 </head>
@@ -688,7 +690,7 @@
         document.getElementById('settings').onclick = function() {
             document.getElementById('popupTitle').textContent = "Settings";
             document.getElementById('popupBody').innerHTML = `
-                <button style="width:100%;padding:.9em;border-radius:7px;font-size:1.2em; background:#fff;color:#000;margin-bottom:18px;" onclick="randomZone()">Random Game</button>`;
+                <button style="width:100%;padding:.75em 1em;border-radius:8px;font-size:1rem;background:transparent;color:#eef5ff;border:1px solid rgba(238,243,255,0.24);margin-bottom:18px;" onclick="randomZone()">Random Game</button>`;
             document.getElementById('popupOverlay').style.display = "flex";
         };
 
